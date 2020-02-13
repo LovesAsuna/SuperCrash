@@ -4,6 +4,8 @@ import lombok.Getter;
 
 public enum ConfigType {
 
+    SETTING_DEFAULTSUBMSG("Setting.DefaultSubMsg"),
+    SETTING_CRASH("Setting.Crash"),
     SETTING_DEFAULTMSG("Setting.DefaultMsg");
 
 
