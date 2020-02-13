@@ -37,7 +37,7 @@ public class CrashUtil {
         packet.getFloat().write(2, (float) 0);
 
         try {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 50; i++) {
                 manager.sendServerPacket(player, packet);
             }
         } catch (InvocationTargetException e) {
