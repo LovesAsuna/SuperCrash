@@ -1,0 +1,16 @@
+# 语言文件配置
+Language:
+  # 指令帮助
+  CommandHelp:
+    - "&e=============== &6[SuperCrash] &e==============="
+    - "&61. &b封禁玩家的同时使其客户端未响应"
+  # 没有权限
+  NoPermission: "&7[&eSuperCrash&7]&c你没有权限操作"
+  # 命令参数错误
+  CommandError: "&7[&eSuperCrash&7]&c你输入的命令不正确!"
+  # 重载成功
+  Reload: "&7[&eSuperCrash&7]&2插件配置重载成功"
+  # 不存在的玩家
+  NotExistPlayer: "&7[&eSuperCrash&7]&c该玩家不存在"
+  # 成功发送消息
+  SuccessSend: "&7[&eSuperCrash&7]&a成功发送封禁消息"

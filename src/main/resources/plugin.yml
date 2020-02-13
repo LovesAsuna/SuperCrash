@@ -1,0 +1,10 @@
+name: SuperCrash
+version: ${project.version}
+main: org.sct.supercrash.SuperCrash
+author: icestar
+api-version: 1.13
+depend: [ProtocolLib]
+commands:
+  supercrash:
+    description: "插件主命令"
+
