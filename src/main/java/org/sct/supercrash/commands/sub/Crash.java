@@ -1,12 +1,14 @@
 package org.sct.supercrash.commands.sub;
 
 import net.minecraft.server.v1_14_R1.PacketPlayOutTitle;
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.sct.plugincore.util.function.SubCommand;
 import org.sct.supercrash.SuperCrash;
 import org.sct.supercrash.commands.util.CrashUtil;
+import org.sct.supercrash.commands.util.TitleUtil;
 import org.sct.supercrash.enumeration.ConfigType;
 import org.sct.supercrash.enumeration.LangType;
 import org.sct.supercrash.file.Config;
@@ -26,7 +28,7 @@ public class Crash implements SubCommand {
             return false;
         }
 
-        /*supercrash crash player text*/
+        /*supercrash crash player text subtext*/
         Player player = Bukkit.getPlayer(args[1]);
         if (player == null) {
             sender.sendMessage(Lang.getString(LangType.LANG_NOTEXISTPLAYER));
@@ -34,30 +36,29 @@ public class Crash implements SubCommand {
         }
 
         String text = null;
+        String subtext = null;
         if (args.length == 2) {
             text = Config.getString(ConfigType.SETTING_DEFAULTMSG);
+            subtext = Config.getString(ConfigType.SETTING_DEFAULTSUBMSG);
+        } else if (args.length == 3) {
+            text = args[2];
+            subtext = Config.getString(ConfigType.SETTING_DEFAULTSUBMSG);
         } else {
             text = args[2];
+            subtext = args[3];
         }
 
-        ProtocolManager manager = ProtocolLibrary.getProtocolManager();
-        PacketContainer packet = manager.createPacket(PacketType.Play.Server.TITLE);
 
-        packet.getEnumModifier(PacketPlayOutTitle.EnumTitleAction.class, 0).write(0, PacketPlayOutTitle.EnumTitleAction.TITLE);
-        packet.getChatComponents().write(0, WrappedChatComponent.fromText(BasicUtil.convert(text)));
-        packet.getIntegers().write(0, -1);
-        packet.getIntegers().write(1, -1);
-        packet.getIntegers().write(2, -1);
+        TitleUtil.sendTitle(player, text, PacketPlayOutTitle.EnumTitleAction.TITLE);
+        TitleUtil.sendTitle(player, subtext, PacketPlayOutTitle.EnumTitleAction.SUBTITLE);
 
-        try {
-            manager.sendServerPacket(player, packet);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        if (Config.getBoolean(ConfigType.SETTING_CRASH)) {
+            Bukkit.getScheduler().runTaskLaterAsynchronously(SuperCrash.getInstance(), () -> {
+                CrashUtil.crash(player);
+            }, 10L);
         }
 
-        Bukkit.getScheduler().runTaskLaterAsynchronously(SuperCrash.getInstance(), () -> {
-            CrashUtil.crash(player);
-        }, 10L);
+        Bukkit.getBanList(BanList.Type.NAME).addBan(player.getName(), text, null, sender.getName());
         sender.sendMessage(Lang.getString(LangType.LANG_SUCCESSSEND));
 
         return true;
