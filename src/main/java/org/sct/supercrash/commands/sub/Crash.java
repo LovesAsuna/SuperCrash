@@ -42,7 +42,11 @@ public class Crash implements SubCommand {
             subtext = Config.getString(ConfigType.SETTING_DEFAULTSUBMSG);
         } else if (args.length == 3) {
             text = args[2];
-            subtext = Config.getString(ConfigType.SETTING_DEFAULTSUBMSG);
+            if ("null".equalsIgnoreCase(args[3])) {
+                subtext = "";
+            } else {
+                subtext = Config.getString(ConfigType.SETTING_DEFAULTSUBMSG);
+            }
         } else {
             text = args[2];
             subtext = args[3];
