@@ -91,10 +91,11 @@
             <systemPath>E:/work/1.14.4test/plugins/ProtocolLib.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>local</groupId>
+            <groupId>system</groupId>
             <artifactId>pluginCore</artifactId>
             <version>1.0.0</version>
-            <scope>compile</scope>
+            <scope>system</scope>
+            <systemPath>E:/work/1.14.4test/plugins/PluginCore.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

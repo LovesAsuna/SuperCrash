@@ -40,6 +40,14 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: local:pluginCore:1.0.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: system:pluginCore:1.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../1.14.4test/plugins/PluginCore.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
