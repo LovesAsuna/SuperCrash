@@ -5,14 +5,16 @@ import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.sct.plugincore.util.function.SubCommand;
+import org.sct.plugincore.util.function.command.SubCommand;
 import org.sct.supercrash.SuperCrash;
-import org.sct.supercrash.commands.util.CrashUtil;
-import org.sct.supercrash.commands.util.TitleUtil;
+import org.sct.supercrash.util.CrashUtil;
+import org.sct.supercrash.util.TitleUtil;
 import org.sct.supercrash.enumeration.ConfigType;
 import org.sct.supercrash.enumeration.LangType;
 import org.sct.supercrash.file.Config;
 import org.sct.supercrash.file.Lang;
+
+import java.util.Map;
 
 
 /**
@@ -66,5 +68,10 @@ public class Crash implements SubCommand {
         sender.sendMessage(Lang.getString(LangType.LANG_SUCCESSSEND));
 
         return true;
+    }
+
+    @Override
+    public Map<Integer, String[]> getParams() {
+        return null;
     }
 }

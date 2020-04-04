@@ -1,8 +1,10 @@
 package org.sct.supercrash.commands.sub;
 
 import org.bukkit.command.CommandSender;
-import org.sct.plugincore.util.function.SubCommand;
+import org.sct.plugincore.util.function.command.SubCommand;
 import org.sct.supercrash.SuperCrash;
+
+import java.util.Map;
 
 /**
  * @author icestar
@@ -18,5 +20,10 @@ public class Info implements SubCommand {
         sender.sendMessage("§7└ §eLink§7:§b None");
 
         return true;
+    }
+
+    @Override
+    public Map<Integer, String[]> getParams() {
+        return null;
     }
 }

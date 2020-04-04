@@ -2,7 +2,7 @@ package org.sct.supercrash;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.sct.supercrash.commands.CommandHandler;
+import org.sct.supercrash.commands.SubCommandHandler;
 import org.sct.supercrash.file.Lang;
 
 public final class SuperCrash extends JavaPlugin {
@@ -16,7 +16,7 @@ public final class SuperCrash extends JavaPlugin {
 
         Lang.loadLang();
 
-        Bukkit.getPluginCommand("supercrash").setExecutor(new CommandHandler());
+        Bukkit.getPluginCommand("supercrash").setExecutor(new SubCommandHandler(this, "supercrash"));
 
         Bukkit.getConsoleSender().sendMessage("§7[§eSuperCrash§7]§2插件已启用");
     }

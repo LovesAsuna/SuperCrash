@@ -1,10 +1,12 @@
 package org.sct.supercrash.commands.sub;
 
 import org.bukkit.command.CommandSender;
-import org.sct.plugincore.util.function.SubCommand;
+import org.sct.plugincore.util.function.command.SubCommand;
 import org.sct.supercrash.SuperCrash;
 import org.sct.supercrash.enumeration.LangType;
 import org.sct.supercrash.file.Lang;
+
+import java.util.Map;
 
 /**
  * @author icestar
@@ -24,5 +26,10 @@ public class Reload implements SubCommand {
 
         sender.sendMessage(Lang.getString(LangType.LANG_RELOAD));
         return true;
+    }
+
+    @Override
+    public Map<Integer, String[]> getParams() {
+        return null;
     }
 }

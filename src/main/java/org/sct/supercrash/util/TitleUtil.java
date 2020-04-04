@@ -1,4 +1,4 @@
-package org.sct.supercrash.commands.util;
+package org.sct.supercrash.util;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;

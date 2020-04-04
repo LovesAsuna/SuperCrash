@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+shadowJar {
+    configurations = [project.configurations.compile]
+}
+
+repositories {
+    mavenLocal()
+
+    maven {
+        url 'https://jitpack.io/'
+    }
+
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    compileOnly files('E:\\work\\1.14.4test\\cache\\patched_1.14.4.jar')
+    compileOnly files('E:\\work\\1.15.2test\\plugins\\Protocollib.jar')
+    compileOnly 'com.github.LovesAsuna:PluginCore:-SNAPSHOT'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
+
+group = 'org.sct'
+version = '1.0-SNAPSHOT'
+description = 'SuperCrash'
+sourceCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.add('-Xlint:deprecation')
+    options.compilerArgs.add('-Xlint:unchecked')
+}
+
+task copyFile(type: Copy, dependsOn: shadowJar) {
+    from('build/libs/')
+    into('E:/work/1.15.2test/plugins/')
+    include('SuperCrash*.jar')
+    rename {
+        "SuperCrash.jar"
+    }
+}
